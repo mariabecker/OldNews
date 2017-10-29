@@ -1,20 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="oldnews.de.oldnews.MainActivity"
-    tools:showIn="@layout/activity_main">
+    android:layout_width="match_parent">
 
-    <TextView
+    <!-- main content view -->
+    <RelativeLayout
+        android:id="@+id/content_view"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        tools:context="oldnews.de.oldnews.MainActivity"
+        tools:showIn="@layout/activity_main">
+
+        <TextView
+            android:id="@+id/header_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= "@string/app_name"
+            android:textSize="32sp"/>
+
+        <ImageView
+            android:id="@+id/header_image"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:scaleType="centerCrop"
+            android:cropToPadding="true"
+            android:layout_below="@+id/header_text"
+            android:src="@drawable/newspaper_texture2813" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header_image"
+            app:tabMode="fixed">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/feed_tab_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feed_tab">
+
+            </android.support.design.widget.TabItem>
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/favorites_tab_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/favorites_tab" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/ocr_tab_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ocr_tab" />
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/pager" />
+
+    </RelativeLayout>
+
+    <!-- navigation drawer -->
+    <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/navigation_view"
+        android:layout_gravity="start"
+        app:menu="@menu/menu_main" />
 
-</android.support.constraint.ConstraintLayout>
+
+
+</android.support.v4.widget.DrawerLayout>

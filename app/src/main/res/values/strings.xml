@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">OldNews</string>
     <string name="action_settings">Settings</string>
+    <string name="feed_tab">Aktuell</string>
+    <string name="favorites_tab">Favoriten</string> 
+    <string name="ocr_tab">Gemeldet</string>
 </resources>

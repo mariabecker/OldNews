@@ -31,39 +31,23 @@
             android:layout_below="@+id/header_text"
             android:src="@drawable/newspaper_texture2813" />
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_image"
-            app:tabMode="fixed">
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/feed_tab_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/feed_tab">
-
-            </android.support.design.widget.TabItem>
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/favorites_tab_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/favorites_tab" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/ocr_tab_item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ocr_tab" />
-
-        </android.support.design.widget.TabLayout>
-
         <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/pager" />
+            android:layout_below="@+id/header_image">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header_image"
+                app:tabMode="fixed">
+
+            </android.support.design.widget.TabLayout>
+
+        </android.support.v4.view.ViewPager>
+
 
     </RelativeLayout>
 

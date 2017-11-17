@@ -4,12 +4,61 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/news_element"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1 newselement"
-        android:textSize="32sp"/>
+        android:id="@+id/card_view"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/news_element"
+            android:padding="16dp">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favorite_button"
+                android:layout_marginEnd="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/date"
+                android:layout_toEndOf="@id/favorite_button"
+                android:layout_marginEnd="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/newspaper_name"
+                android:layout_toEndOf="@id/date"
+                android:layout_marginEnd="3dp"
+                android:layout_marginStart="3dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/favorite_button"
+                android:id="@+id/separation_horizontal"
+                android:padding="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/news_text"
+                android:layout_below="@id/separation_horizontal"
+                android:layout_marginTop="2dp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

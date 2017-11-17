@@ -10,6 +10,7 @@
     <color name="colorAccent">#9ccc65</color>
 
     <color name="white">#ffffff</color>
+    <color name="lightestGrey">#e2e2e2</color>
     <color name="lightGrey">#8b8b8b</color>
 
     <color name="secondaryColor">#9ccc65</color>

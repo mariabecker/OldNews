@@ -30,7 +30,7 @@
             android:cropToPadding="true"
             android:layout_below="@+id/header_text"
             android:contentDescription="@string/banner_img"
-            android:src="@drawable/newspaper_texture2813_gruen" />
+            android:src="@drawable/newspaper_texture2813_gruen2" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"

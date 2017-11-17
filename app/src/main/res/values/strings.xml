@@ -2,8 +2,15 @@
     <string name="app_name">Altpapier</string>
     <string name="action_settings">Einstellungen</string>
     <string name="feed_tab">Aktuell</string>
-    <string name="favorites_tab">Favoriten</string> 
+    <string name="favorites_tab">Favoriten</string>
     <string name="ocr_tab">Gemeldet</string>
 
     <string name="banner_img">Banner Image</string>
+    <string name="logo">Altpapier Logo</string>
+    <string name="title_activity_splash">Splash</string>
+
+    <string name="header">header</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+
 </resources>

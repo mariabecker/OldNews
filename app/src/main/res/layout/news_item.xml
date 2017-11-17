@@ -2,58 +2,73 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:background="@android:drawable/dialog_holo_light_frame">
+    android:orientation="vertical">
+    <!--android:background="@android:drawable/dialog_holo_light_frame"-->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10sp" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_star_border_black_24dp" />
-        <TextView
-            android:id="@+id/news_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/header"
-            android:layout_marginLeft="10sp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:typeface="serif"
-            android:textColor="@android:color/black"/>
-
-        <TextView
-            android:id="@+id/news_element"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1 newselement"
-            android:textSize="10sp"
-            android:layout_marginLeft="10sp"/>
-
-    </LinearLayout>
-
-    <View
+    <android.support.v7.widget.CardView  xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/primaryLightColor"
-        android:layout_marginRight="15sp"
-        android:layout_marginLeft="15sp" />
-
-    <TextView
-        android:id="@+id/news_text"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_ipsum"
-        android:textSize="12sp"
-        android:layout_margin="15sp"/>
+        android:id="@+id/card_view"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        card_view:cardElevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/news_element"
+            android:padding="16dp">
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favorite_button"
+                android:layout_marginEnd="3dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_star_border_black_24dp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/separation_horizontal"
+                android:layout_toEndOf="@+id/favorite_button"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/newspaper_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/separation_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/date"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/favorite_button"
+                android:id="@+id/separation_horizontal"
+                android:padding="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/news_text"
+                android:layout_below="@id/separation_horizontal"
+                android:layout_marginTop="2dp"
+                android:textSize="12sp"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 
 
 </LinearLayout>

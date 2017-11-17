@@ -1,11 +1,13 @@
 package oldnews.de.oldnews;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
 
         for(int i = 0; i < 100; i++) {
             Log.d(TAG, "adding item " + i);
-            NewsItem newsItem = new NewsItem("item nr " + i);
+            NewsItem newsItem = new NewsItem();
             mNewsItems.add(newsItem);
         }
     }
@@ -45,6 +47,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
         String newsText = mNewsItems.get(position).getNewsText();
         Log.d(TAG, "onBind " + position + " " + newsText);
         holder.mNewsText.setText(newsText);
+        holder.mNewspaperName.setText(mNewsItems.get(position).getNewspaperName());
+        holder.mDate.setText(mNewsItems.get(position).getNewsDate());
     }
 
     @Override
@@ -57,12 +61,20 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
 
     class FeedAdapterViewHolder extends RecyclerView.ViewHolder {
 
+        private CardView mCardView;
         private TextView mNewsText;
+        private TextView mDate;
+        private TextView mNewspaperName;
+        private ImageButton mFavoriteButton;
 
         FeedAdapterViewHolder(View view) {
             super(view);
 
-            mNewsText = (TextView) view.findViewById(R.id.news_element);
+            mCardView = (CardView) view.findViewById(R.id.card_view);
+            mNewsText = (TextView) view.findViewById(R.id.news_text);
+            mDate = (TextView) view.findViewById(R.id.date);
+            mNewspaperName = (TextView) view.findViewById(R.id.newspaper_name);
+            mFavoriteButton = (ImageButton) view.findViewById(R.id.favorite_button);
         }
 
     }

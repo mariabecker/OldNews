@@ -31,7 +31,7 @@ public class NetworkUtils {
 
     public static URL buildRequestUrl(int pageNumber, int pageSize) {
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
-                .appendQueryParameter(PARAM_QUERY, PAGE_NUMBER_URL + pageNumber)
+                .appendQueryParameter(PAGE_NUMBER_URL, Integer.toString(pageNumber))
                 .appendQueryParameter(PAGE_SIZE_URL, Integer.toString(pageSize))
                 .build();
 

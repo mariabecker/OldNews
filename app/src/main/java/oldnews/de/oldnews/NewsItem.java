@@ -31,6 +31,7 @@ public class NewsItem {
         //this.mFavorites_button = imageButton;
     }
 
+
     public String getNewsText() {
         return this.mNewsText;
     }

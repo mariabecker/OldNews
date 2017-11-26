@@ -32,6 +32,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
     private static final String DATE_ISSUED = "dateIssued";
     private static final String NEWSPAPER_NAME = "newspaperTitle";
     private static final String NEWSPAPER_TEXT = "text";
+    private static final String NEWSPAPER_HEADLINE = "headline";
 
     private ArrayList<NewsItem> mNewsItems;
 
@@ -62,7 +63,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
 
                 String dateIssued = JsonUtils.getStringFromJson(currentJsonNewsItem, DATE_ISSUED);
                 String newspaperName = JsonUtils.getStringFromJson(currentJsonNewsItem, NEWSPAPER_NAME);
-                String newspaperText = JsonUtils.getStringFromJson(currentJsonNewsItem, NEWSPAPER_TEXT);
+                String newspaperText = JsonUtils.getStringFromJson(currentJsonNewsItem, NEWSPAPER_HEADLINE) + "\n\n" + JsonUtils.getStringFromJson(currentJsonNewsItem, NEWSPAPER_TEXT);
                 //String newspaperText = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
 
                 NewsItem newsItem = new NewsItem(newspaperText, dateIssued, newspaperName);
@@ -143,7 +144,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
             //TODO: finish this method by constructing newsItems from the json objects in the array
-            Log.d(TAG, jsonArray.toString());
+            //Log.d(TAG, jsonArray.toString());
+            Log.d(TAG, ""+(jsonArray == null));
             setNewsItems(jsonArray);
         }
     }

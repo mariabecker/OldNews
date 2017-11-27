@@ -23,10 +23,10 @@ public interface ArticleDao {
     @Delete
     public void deleteArticles (Article... articles);
 
-    @Query("SELECT * FROM articles WHERE isDeleted = 0 ")
+    @Query("SELECT * FROM articles WHERE isDeleted = 0 ORDER BY appContentDate DESC, appContentPosition")
     public Article[] loadAllArticles();
 
-    @Query("SELECT * FROM articles WHERE isDeleted = 0 AND isFavourite = 1 ")
+    @Query("SELECT * FROM articles WHERE isDeleted = 0 AND isFavourite = 1 ORDER BY appContentDate DESC, appContentPosition")
     public Article[] loadFavouriteArticles();
 
 }

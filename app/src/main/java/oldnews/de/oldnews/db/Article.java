@@ -38,4 +38,6 @@ public class Article {
 
     public boolean isFavourite;
     public boolean isDeleted;
+    public String appContentDate;
+    public int appContentPosition;
 }

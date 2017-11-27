@@ -28,7 +28,9 @@ public class JsonUtils {
     private static final String IMAGE_SIZE = "imageSize";
     private static final String IS_DELETED = "isDeleted";
     private static final String LAST_MODIFIED = "lastModified";
-    private static final String PAHE_NR = "pageNr";
+    private static final String PAGE_NR = "pageNr";
+    private static final String CONTENT_DATE = "date";
+    private static final String CONTENT_POSITION = "position";
 
     public static String getStringFromJson(JSONObject newsItemJson, String key) {
 
@@ -69,7 +71,9 @@ public class JsonUtils {
             a.imageSize = json.getInt(IMAGE_SIZE);
             a.isDeleted = json.getBoolean(IS_DELETED);
             a.lastModified = json.getString(LAST_MODIFIED);
-            a.pageNr = json.getString(PAHE_NR);
+            a.pageNr = json.getString(PAGE_NR);
+            a.appContentDate = json.getString(CONTENT_DATE);
+            a.appContentPosition = json.getInt(CONTENT_POSITION);
         }catch(JSONException e) {
             e.printStackTrace();
             return null;

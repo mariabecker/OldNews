@@ -21,8 +21,8 @@ public class MainPageAdapter extends FragmentPagerAdapter {
         mFragmentArrayList = new ArrayList<Fragment>();
 
         mFragmentArrayList.add(new FeedFragment());
-        mFragmentArrayList.add(new FeedFragment());
-        mFragmentArrayList.add(new FeedFragment());
+        //mFragmentArrayList.add(new FeedFragment());
+        //mFragmentArrayList.add(new FeedFragment());
 
         mTitleList = new ArrayList<String>();
         mTitleList.add(context.getResources().getString(R.string.feed_tab));

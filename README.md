@@ -1,4 +1,4 @@
-![Altpapier](Zeichenfläche 2.png?raw=true "Header")
+![Altpapier](Zeichenflaeche.png?raw=true "Header")
 
 # ALTPAPIER
 Lese Nachrichten von vor 100 Jahren. Mit dieser App kannst du zufällige Zeitungsartikel von Vor-Vorgestern entdecken.

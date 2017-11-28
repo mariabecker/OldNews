@@ -33,6 +33,8 @@ public class FeedFragment extends Fragment {
         mFeedAdapter = new FeedAdapter("all");
         mRecyclerView.setAdapter(mFeedAdapter);
 
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
 

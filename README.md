@@ -16,9 +16,4 @@ Diese Anwendung ist im Rahmen der Veranstaltung **Coding Da Vinci 2017** entstan
 ## Links
 * [Coding Da Vinci](https://codingdavinci.de/) - Coding da Vinci Homepage
 * [ZEFYS](http://zefys.staatsbibliothek-berlin.de/) - Zeitungsinformationssystem der Staatsbibliothek
-* [Altpapier App]() - Altpapier im Google Play Store
-* [Altpapier Creator]() - Altpapier Creator
 
-## Installation
-Altpapier ist unter oben stehendem link im Appstore zu finden. Lade es auf dein mobiles Gerät und installiere es. Die Bedienung ist kinderleicht.
-Die Anwendung wurde mit Android Studio entwickelt. Eine Version für iOs ist in Bearbeitung.

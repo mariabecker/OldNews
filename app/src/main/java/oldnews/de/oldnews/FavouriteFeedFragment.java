@@ -1,6 +1,5 @@
 package oldnews.de.oldnews;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,16 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-
-import java.net.URL;
-
 
 /**
  * Created by maike on 12.11.17.
  */
 
-public class FeedFragment extends Fragment {
+public class FavouriteFeedFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private FeedAdapter mFeedAdapter;
@@ -30,7 +25,7 @@ public class FeedFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_page, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recylerview);
-        mFeedAdapter = new FeedAdapter("all");
+        mFeedAdapter = new FeedAdapter("fav");
         mRecyclerView.setAdapter(mFeedAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

@@ -29,4 +29,9 @@ public interface ArticleDao {
     @Query("SELECT * FROM articles WHERE isDeleted = 0 AND isFavourite = 1 ORDER BY appContentDate DESC, appContentPosition")
     public Article[] loadFavouriteArticles();
 
+    @Query("UPDATE articles SET isFavourite = 1 WHERE id = :id")
+    public void setArticleFavourite(int id);
+
+    @Query("UPDATE articles SET isFavourite = 0 WHERE id = :id")
+    public void setArticleUnfavourite(int id);
 }

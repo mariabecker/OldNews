@@ -1,6 +1,7 @@
 package oldnews.de.oldnews;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -54,32 +56,48 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
     private final ArticleDao articleDao;
     private Map<Integer, Article> fetchedArticles;
 
-    public FeedAdapter() {
+    private String mode;
 
+    public FeedAdapter(String mode) {
+
+        this.mode = mode;
         AppDatabase db = AppDatabase.getDatabase();
         articleDao = db.articleDao();
         fetchedArticles = new HashMap<>();
 
 
         mNewsItems = new ArrayList<NewsItem>();
-        load();
 
-        Log.d(TAG, "starting api request");
-        URL apiRequest = NetworkUtils.buildRequestUrl(1, MainActivity.PAGE_SIZE);
-        Log.d(TAG, "starting new async task");
-        new FetchNewsItems().execute(apiRequest);
+        if(mode.equals("all")) {
+            load();
 
+            Log.d(TAG, "starting api request");
+            URL apiRequest = NetworkUtils.buildRequestUrl(1, MainActivity.PAGE_SIZE);
+            Log.d(TAG, "starting new async task");
+            new FetchNewsItems().execute(apiRequest);
+        }else if(mode.equals("fav")){
+            loadFavourites();
+        }
         /*for(int i = 0; i < 100; i++) {
             Log.d(TAG, "adding item " + i);
             NewsItem newsItem = new NewsItem();
             mNewsItems.add(newsItem);
         }*/
+
+
+    }
+
+
+    private void loadFavourites() {
+        mNewsItems.clear();
+        new FetchFavsFromDb().execute();
     }
 
     private void load(){
         mNewsItems.clear();
         new FetchFromDB().execute();
     }
+
 
     public void setNewsItemsFromDB(Article[] articles){
         int oldPosition = mNewsItems.size()-1;
@@ -95,7 +113,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
 
             fetchedArticles.put(a.externalId, a);
 
-            NewsItem newsItem = new NewsItem(text, dateIssued, newspaperName);
+            NewsItem newsItem = new NewsItem(a.id, text, dateIssued, newspaperName, a.isFavourite);
             mNewsItems.add(newsItem);
             newItems++;
         }
@@ -150,32 +168,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
         new UpdateArticles().execute(articlesToUpdate);
     }
 
-
-    public void setNewsItems(JSONArray newsItemsJson) {
-
-        int oldPosition = mNewsItems.size()-1;
-
-        for(int i = 0; i < newsItemsJson.length(); i++) {
-
-            try {
-                JSONObject currentJsonNewsItem = newsItemsJson.getJSONObject(i);
-
-                String dateIssued = JsonUtils.getStringFromJson(currentJsonNewsItem, DATE_ISSUED);
-                String newspaperName = JsonUtils.getStringFromJson(currentJsonNewsItem, NEWSPAPER_NAME);
-                String newspaperText = JsonUtils.getStringFromJson(currentJsonNewsItem, NEWSPAPER_HEADLINE) + "\n\n" + JsonUtils.getStringFromJson(currentJsonNewsItem, NEWSPAPER_TEXT);
-                //String newspaperText = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
-
-                NewsItem newsItem = new NewsItem(newspaperText, dateIssued, newspaperName);
-                mNewsItems.add(newsItem);
-
-            } catch(JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        notifyItemRangeChanged(oldPosition, newsItemsJson.length());
-    }
-
     @Override
     public FeedAdapter.FeedAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -188,11 +180,18 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
 
     @Override
     public void onBindViewHolder(FeedAdapter.FeedAdapterViewHolder holder, int position) {
-        String newsText = mNewsItems.get(position).getNewsText();
-        Log.d(TAG, "onBind " + position + " " + newsText);
+        NewsItem item = mNewsItems.get(position);
+        String newsText = item.getNewsText();
+        Log.d(TAG, "onBind fav: " + item.isFavourite() + " - pos: " + position + " - text " + newsText);
         holder.mNewsText.setText(newsText);
-        holder.mNewspaperName.setText(mNewsItems.get(position).getNewspaperName());
-        holder.mDate.setText(mNewsItems.get(position).getNewsDate());
+        holder.mNewspaperName.setText(item.getNewspaperName());
+        holder.mDate.setText(item.getNewsDate());
+        if(item.isFavourite()) {
+            holder.mFavoriteFill.setVisibility(View.VISIBLE);
+        }else{
+            holder.mFavoriteFill.setVisibility(View.INVISIBLE);
+        }
+        //holder.mFavoriteButton.getDrawable().setColorFilter(item.isFavourite()? 0xFFFFFF00:0xFF000000, PorterDuff.Mode.MULTIPLY);
     }
 
     @Override
@@ -210,6 +209,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
         private TextView mDate;
         private TextView mNewspaperName;
         private ImageButton mFavoriteButton;
+        private ImageView mFavoriteFill;
+
 
         FeedAdapterViewHolder(View view) {
             super(view);
@@ -219,10 +220,17 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
             mDate = (TextView) view.findViewById(R.id.date);
             mNewspaperName = (TextView) view.findViewById(R.id.newspaper_name);
             mFavoriteButton = (ImageButton) view.findViewById(R.id.favorite_button);
+            mFavoriteFill = (ImageView) view.findViewById(R.id.favorite_fill);
+
             mFavoriteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    int position = getLayoutPosition();
+                    if(mNewsItems.size()>0) {
+                        NewsItem item = mNewsItems.get(position);
+                        Log.d(TAG, "favclick " + item.getNewsText());
+                        new FavArticle().execute(item);
+                    }
                 }
             });
         }
@@ -243,6 +251,45 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
         }
     }
 
+    private class FetchFavsFromDb extends AsyncTask<Void, Void, Article[]>{
+
+        @Override
+        protected Article[] doInBackground(Void... voids) {
+            Article[] articles = articleDao.loadFavouriteArticles();
+            return articles;
+        }
+
+        @Override
+        protected void onPostExecute(Article[] articles) {
+            setNewsItemsFromDB(articles);
+        }
+    }
+
+    private class FavArticle extends AsyncTask<NewsItem, Void, Integer>{
+
+        @Override
+        protected Integer doInBackground(NewsItem... items) {
+
+            if(items[0].isFavourite()){
+                articleDao.setArticleUnfavourite(items[0].getId());
+            }else{
+                articleDao.setArticleFavourite(items[0].getId());
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            if(mode.equals("all")){
+                load();
+            }else if(mode.equals("fav")){
+                loadFavourites();
+            }
+        }
+    }
+
     private class SaveArticles extends AsyncTask<List<Article>, Void, Integer>{
 
 
@@ -259,7 +306,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedAdapterVie
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
             load();
-            notifyDataSetChanged();
         }
     }
 

@@ -25,12 +25,13 @@
         <ImageView
             android:id="@+id/header_image"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
             android:cropToPadding="true"
             android:layout_below="@+id/header_text"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/banner_img"
-            android:src="@drawable/newspaper_texture2813_gruen2" />
+            android:src="@drawable/header" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"

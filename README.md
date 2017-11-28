@@ -5,7 +5,7 @@ Lese Nachrichten von vor 100 Jahren. Mit dieser App kannst du zufällige Zeitung
 Finde deine Favoriten, wie krumme Anekdoten, alte Liebesanzeigen oder lokale Phänomene, und speicher sie ab.
 
 ## Screenshot
-![Screenshot](Screenshot.png?raw=true "Screenshot")
+![Screenshot](screenshot.png?raw=true "Screenshot")
 
 ## Authors
 Maria Becker, Erik Koenen, Kathrin Konkol, Maike Orlikowski

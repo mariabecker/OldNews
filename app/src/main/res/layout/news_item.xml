@@ -13,7 +13,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        card_view:cardElevation="4dp">
+        card_view:cardElevation="6dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -43,18 +43,21 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_above="@+id/separation_horizontal"
                 android:layout_toEndOf="@+id/favorite_button"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/newspaper_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/separation_horizontal"
+                android:textColor="@color/primaryDarkColor"
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/date"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:fontFamily="serif"
                 android:textStyle="bold" />
 
             <View
@@ -73,7 +76,7 @@
                 android:id="@+id/news_text"
                 android:layout_below="@id/separation_horizontal"
                 android:layout_marginTop="2dp"
-                android:textSize="12sp"/>
+                android:textSize="14sp"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/colorPrimary"
     android:gravity="center"
-    android:background="@color/primaryLightColor"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="99dp"
+        android:fontFamily="serif"
         android:text="Altpapier"
         android:textAlignment="center"
         android:textColor="@color/primaryTextColor"
-        android:textSize="36sp" />
+        android:textSize="60sp"
+        tools:typeface="serif" />
 
     <ImageView
         android:id="@+id/logo_img"
         android:layout_width="fill_parent"
-        android:layout_height="138dp"
+        android:layout_height="226dp"
         android:layout_gravity="center"
         android:contentDescription="@string/logo"
         android:src="@drawable/logo_grau_nobg"
